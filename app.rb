@@ -17,6 +17,6 @@ end
 puts "-------------------------------"
 
 cohort_repository.all.each do |cohort|
-  puts cohort
+  puts  cohort
 end
 

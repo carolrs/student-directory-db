@@ -16,7 +16,14 @@ Otherwise, [follow this recipe to design and create the SQL schema for your tabl
 Table: students
 
 Columns:
-id | name | cohort_name
+id | name | cohort_id
+
+Table: cohorts
+
+Columns:
+id | name | starting_date
+
+
 ```
 
 ## 2. Create Test SQL seeds
@@ -29,8 +36,9 @@ If seed data is provided (or you already created it), you can skip this step.
 
 TRUNCATE TABLE students RESTART IDENTITY; 
 
-INSERT INTO students (name, cohort_name) VALUES ('David', 'April 2022');
-INSERT INTO students (name, cohort_name) VALUES ('Anna', 'May 2022');
+INSERT INTO students (name, cohort_id ) VALUES ('Carolina', '1');
+INSERT INTO students (name, cohort_id ) VALUES ('John','1');
+
 ```
 
 Run this SQL file on the database to truncate (empty) the table, and insert the seed data. Be mindful of the fact any existing records in the table will be deleted.
@@ -76,7 +84,7 @@ class Student
 end
 
 class Cohort
-  attr_accessor :id, :name
+  attr_accessor :id, :name, :starting_date
 end
 # The keyword attr_accessor is a special Ruby feature
 # which allows us to set and get attributes on an object,
@@ -143,14 +151,15 @@ These examples will later be encoded as RSpec tests.
 repo = Studentrepository.new
 students = repo.all
 
-students.first.name # => 'Patience'
-students.first.cohort_id # => '1988'
+students.first.name # => 'Carolina'
+students.first.cohort_id # => '1'
 
 
 # When there are any students in data base
 
 repo = StudentRepository.new
-students = repo.all # => []
+result = Student.new("1","Carolina", "1")
+students = repo.all # => [result]
 
 
 
@@ -167,7 +176,7 @@ cohorts #=> [result]
 repository = CohortRepository.new
 cohorts = repository.find_by_id(1)
 cohorts.name #=> 'March
-  end
+end
 
 
 ```

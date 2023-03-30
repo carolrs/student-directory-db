@@ -21,13 +21,14 @@ CREATE SEQUENCE IF NOT EXISTS cohorts_id_seq;
 CREATE TABLE "public"."cohorts" (
     "id" SERIAL,
     "name" text,
+    "starting_date" text,
     PRIMARY KEY ("id")
 );
 
-INSERT INTO "public"."cohorts" ("id", "name") VALUES
-(1, 'March'),
-(2, 'January'),
-(3, 'May');
+INSERT INTO "public"."cohorts" ("id", "name", "starting_date") VALUES
+(1, 'March', '2023, 03, 10'),
+(2, 'January', '2023, 01, 15'),
+(3, 'May', '2023, 05, 10');
 
 INSERT INTO "public"."students" ("id", "name", "cohort_id") VALUES
 (1, 'Carolina', 1),

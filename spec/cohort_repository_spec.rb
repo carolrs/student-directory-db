@@ -17,12 +17,23 @@ describe CohortRepository do
     repository = CohortRepository.new
     cohorts = repository.all
 
-    result = Cohort.new("1","March")
-    
+    result = Cohort.new('1', 'March','2023, 03, 10')
 
     expect(cohorts).to eq [result]
 
   end
+
+  it "returns all cohorts in the listlist" do
+    repository = CohortRepository.new
+    cohorts = repository.all
+
+    result = Cohort.new('1', 'March','2023, 03, 10')
+
+    expect(cohorts.first.name).to eq 'March'
+
+  end
+
+
 
   it "returns cohort by id" do
     repository = CohortRepository.new

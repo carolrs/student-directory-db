@@ -26,8 +26,22 @@ describe StudentRepository do
     result = Student.new("1","Carolina", "1")
     result_2 = Student.new("2","John", "1")
 
+    # In order for this comparison to work, I had to 
+    # implement ==(other) method, so it won't consider the 
+    # memory address as equal
     expect(students).to eq [result, result_2]
 
+  end
+
+  it "returns all students name list " do
+    repository = StudentRepository.new
+    students = repository.all
+
+    result = Student.new(1, 'March', '2023, 03, 10')
+    result = Student.new("2","John", "1")
+    
+    expect(students.first.name).to eq "Carolina"
+    expect(students[1].name).to eq "John"
   end
 
   it "returns student by id" do
@@ -40,7 +54,7 @@ describe StudentRepository do
 
   it "raise errors when id not found" do
     repository = StudentRepository.new
-    expect { repository.find_by_id(5) }.to raise_error("Student not found")
+    expect { repository.find_by_id(5) }.to raise_error("Student not found.")
 
   end
 
